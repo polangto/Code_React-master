@@ -1,0 +1,33 @@
+.Fix {
+	display: block;
+	max-height: 400px; /* max height */
+	overflow-y: auto;
+}
+
+tr > th {
+	max-height: 400px;
+	min-width: 100px;
+}
+
+#ID {
+	min-width: 75px;
+}
+
+.Project {
+	width: 450px;
+	min-width: 300px;
+}
+.Date {
+	width: 150px;
+}
+.Owner {
+	width: 200px;
+}
+.Severity {
+	min-width: 100px;
+}
+
+.sticky {
+	position: sticky;
+	top: 150px;
+}

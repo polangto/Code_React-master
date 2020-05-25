@@ -1,0 +1,18 @@
+.word-wrap {
+  word-break: break-all;
+}
+.no-wrap {
+  white-space: nowrap;
+}
+.fixed {
+  table-layout: fixed;
+}
+
+table {
+  table-layout: fixed;
+}
+
+td {
+  white-space: normal !important;
+  word-wrap: break-word;
+}

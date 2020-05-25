@@ -1,0 +1,44 @@
+.engage {
+	width: calc(100% - 150px);
+	text-align: center;
+	border-bottom: 2px solid #000;
+	line-height: 0.1em;
+	margin-bottom: 10px;
+}
+
+.detect_analyze {
+	width: calc(100% - 228px);
+	text-align: center;
+	border-bottom: 2px solid #000;
+	line-height: 0.1em;
+	margin-bottom: 10px;
+}
+
+.respond {
+	width: calc(100% - 162px);
+	text-align: center;
+	border-bottom: 2px solid #000;
+	line-height: 0.1em;
+	margin-bottom: 10px;
+}
+.line1 {
+	font-family: sans-serif;
+	margin-right: auto;
+	text-align: left;
+	font-size: 25px;
+	position: relative;
+	width: 91%;
+}
+
+.line1:after {
+	content: "";
+	display: block;
+	margin-left: 11%;
+	width: 90%;
+	height: 2px;
+	background: #000;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	z-index: -2;
+}
