@@ -61,9 +61,6 @@ export default class Incident extends Component {
 			);
 
 	}
-	useQuery() {
-		return new URLSearchParams(useLocation().search);
-	}
 
 	render() {
 		const { error, isLoaded, items } = this.state;
@@ -85,7 +82,7 @@ export default class Incident extends Component {
 							<Route
 								path='/detail/:id'
 								render={(props) => (
-									<DetailIncident {...props} arrData={this.state.items} />
+									<DetailIncident {...props} />
 								)}
 							/>
 						</Switch>

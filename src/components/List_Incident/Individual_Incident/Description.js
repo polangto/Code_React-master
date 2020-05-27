@@ -39,13 +39,15 @@ export default class Detail_Incident extends Component {
 						</button>
 					</div>
 				</div>
-				<table id="mytable" className="table table-bordred table-striped">
-					<thead>
-					<th></th>
-					<th>Task Name</th>
-					<th>Action</th>
-					</thead>
-				</table>
+				<div className="row">
+					<table id="mytable" className="table table-bordred table-striped">
+						<thead>
+						<th style={{width:"37px"}}></th>
+						<th className="d-flex justify-content-start">Task Name</th>
+						<th>Action</th>
+						</thead>
+					</table>
+				</div>
 				<Engage info={engage}/>
 				<DetectAnalyze info={detect}/>
 				<Respond info={respond}/>

@@ -9,8 +9,8 @@ function Engage(props) {
 		checkNull = false;
 		list = info.map((item) =>   <tr>
 			<td><input type="checkbox" class="checkthis" /></td>
-			<td>{item.name_incident}</td>
-			<td>{item.detail}</td>
+			<td>{item.name}</td>
+			<td><p>{item.detail}</p></td>
 		</tr>);
 	}
 

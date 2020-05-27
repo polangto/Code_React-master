@@ -7,7 +7,6 @@ export default class Detail_Incident extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: [],
 			error: null,
 			isLoaded: false,
 			playbook: [],
@@ -16,12 +15,13 @@ export default class Detail_Incident extends Component {
 	}
 
 	static getDerivedStateFromProps(props, state) {
-		return { data: props.arrData, id: props.match.params.id };
+		return {id: props.match.params.id };
 	}
 	componentDidMount() {
-		let url = 'http://10.102.10.244:8080/api/playbook';
+		let url = 'http://10.102.10.244:8080/api/playbook/?id='+this.state.id;
 		// let { token } = this.state;
 		// let cookie = "user_id=" + token;
+
 		let requestOptions = {
 			method: 'GET', // *GET, POST, PUT, DELETE, etc.
 			mode: 'cors', // no-cors, *cors, same-origin
@@ -58,7 +58,8 @@ export default class Detail_Incident extends Component {
 	}
 
 	render() {
-		let { data, id, playbook } = this.state;
+		let { id, playbook } = this.state;
+		console.log(playbook[0]);
 		let engage = [];
 		let detect = [];
 		let respond = [];
@@ -71,23 +72,19 @@ export default class Detail_Incident extends Component {
 				respond.push(items);
 			}
 		});
-
-		id = parseInt(id, 10);
 		const { error, isLoaded } = this.state;
 		if (error) {
 			return <div>Error: {error.message}</div>;
 		} else if (!isLoaded) {
 			return <div>Loading...</div>;
 		} else {
-			let div = data.map((item) => {
-				return item.id === id ? (
-					<div key={item.id} className="container-fluid">
-						<h2>{item.project}</h2>
+			return(
+					<div key={playbook.id} className="container-fluid">
+						<h2>{playbook.name}</h2>
 						<div className="row">
 							<div className="mt-3 col-4">
 								<Summary
-									id={item.id}
-									severity={item.severity}
+									info ={playbook[0]}
 								/>
 							</div>
 							<div className="mt-3 col-8">
@@ -99,11 +96,7 @@ export default class Detail_Incident extends Component {
 							</div>
 						</div>
 					</div>
-				) : (
-					''
-				);
-			});
-			return <div style={{ marginTop: '60px' }}>{div}</div>;
+			)
 		}
 	}
 }

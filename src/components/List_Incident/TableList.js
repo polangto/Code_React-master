@@ -15,6 +15,7 @@ class ListIncident extends Component {
 			sortType: 'asc',
 			pageSize: 5,
 			pageIndex: 1,
+			item:[],
 		};
 		this.getStringSearch = this.getStringSearch.bind(this);
 		this.setPageSize = this.setPageSize.bind(this);
@@ -95,6 +96,7 @@ class ListIncident extends Component {
 			strSearch,
 			sortValue,
 			sortType,
+			item,
 		} = this.state;
 		var filervalue = items.filter(
 			(item) =>
@@ -106,7 +108,6 @@ class ListIncident extends Component {
 			pageIndex * pageSize
 		);
 		//Gọi hàm search
-
 		const lists = newitems.map((item, index) => (
 			<tr key={item.id}>
 				<th
