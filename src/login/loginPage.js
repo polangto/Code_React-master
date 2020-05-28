@@ -4,13 +4,13 @@ import md5 from "md5";
 import axios from "axios";
 import {Redirect} from "react-router-dom";
 import App from "../App";
-import {fakeAuth} from "./Authen";
+
 
 export default class loginPage extends Component {
 	constructor() {
 		super();
 		this.state = {
-			isAuthenticated: false,
+			isAuthenticated:false,
 			email: "",
 			password: "",
 		};
@@ -58,21 +58,14 @@ export default class loginPage extends Component {
 			.then((response) => response.json())
 			.then((result) => {
 				if(result.status === "Login successful"){
-					fakeAuth.authenticate();
+					sessionStorage.setItem('isAuthenticated', true)
 					this.setState({isAuthenticated:true});
-					console.log(result)
 				}
 			})
 			.catch((error) => console.log("error", error));
 
 	};
 
-	componentDidMount() {
-		let {isAuthenticated} = this.state;
-		if(isAuthenticated) {
-
-		}
-	}
 
 	render() {
 		var background = {

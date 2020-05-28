@@ -3,15 +3,16 @@ import '../../../style.css';
 function Respond(props) {
 	// Khai báo 1 biến số đếm, gọi là "count"
 	const [colapse, setColapse] = useState(false);
+	// let [t]
 	let { info } = props;
 	let checkNull = true;
 	let list = "";
 	if (typeof info !== 'undefined'){
 		checkNull = false;
 		list = info.map((item) =>   <tr>
-			<td><input type="checkbox" class="checkthis" /></td>
+			<td key={item.id}><input type="checkbox" class="checkthis"/></td>
 			<td>{item.name}</td>
-			<td><p>{item.detail}</p></td>
+			<td><p style={{whiteSpace: 'pre-line'}}>{item.detail}</p></td>
 		</tr>);
 	}
 	return (

@@ -2,14 +2,20 @@ import React, { Component } from "react";
 import { ProgressBar } from "react-bootstrap";
 import Engage from "./Engage_Attribute";
 import Respond from "./Respond_Attribute";
-import DetectAnalyze from "./Detect_Analyze_Attribute";
+import {Detect_Analyze} from "./Detect_Analyze_Attribute";
 
-export default class Detail_Incident extends Component {
-	constructor() {
-		super();
+export class Description extends Component {
+	constructor(props) {
+		super(props);
 		this.state = {
 			progress_value: 0,
+			total:props.total,
 		};
+	}
+
+	static getDerivedStateFromProps(props, state) {
+		let progress = props.count/props.total;
+		return {progress_value: progress };
 	}
 
 	colapseButton = () => {
@@ -17,6 +23,13 @@ export default class Detail_Incident extends Component {
 			colapse: !state.colapse,
 		}));
 	};
+
+	// resetProgressBar = (count) =>{
+	// 	let {total} = this.state;
+	// 	this.setState({
+	// 		progress_value: Math.floor(count/total)
+	// 	});
+	// }
 
 	render() {
 		let { progress_value } = this.state;
@@ -42,14 +55,14 @@ export default class Detail_Incident extends Component {
 				<div className="row">
 					<table id="mytable" className="table table-bordred table-striped">
 						<thead>
-						<th style={{width:"37px"}}></th>
+						<th key style={{width:"37px"}}></th>
 						<th className="d-flex justify-content-start">Task Name</th>
 						<th>Action</th>
 						</thead>
 					</table>
 				</div>
 				<Engage info={engage}/>
-				<DetectAnalyze info={detect}/>
+				<Detect_Analyze info={detect} />
 				<Respond info={respond}/>
 			</div>
 		);

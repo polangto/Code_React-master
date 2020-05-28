@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Summary from './Individual_Incident/Summary';
-import Description from './Individual_Incident/Description';
+import {Description} from './Individual_Incident/Description';
 import { useParams } from 'react-router-dom';
+import {ThreeHorseLoading,BatteryLoading } from "react-loadingg";
+import Tab from "../Tabs";
 
 export default class Detail_Incident extends Component {
 	constructor(props) {
@@ -59,11 +61,27 @@ export default class Detail_Incident extends Component {
 
 	render() {
 		let { id, playbook } = this.state;
-		console.log(playbook[0]);
 		let engage = [];
 		let detect = [];
 		let respond = [];
+		let checkValues = [];
+		let counter = 0;
+		let total = playbook.length;
+		if(playbook.length === 0){
+			return <div>
+				<h1 className="d-flex justify-content-center">Not Found</h1>
+			</div>
+		}
 		playbook.map((items) => {
+			if(items.tag_status === 1){
+				let checkValue = { checked: true, inc_id: items.id, task_id:items.task_id};
+				checkValues.push(checkValue);
+				counter++;
+			}
+			else{
+				let checkValue = { checked: false, inc_id: items.id, task_id:items.task_id};
+				checkValues.push(checkValue);
+			}
 			if (items.type === "1") {
 				engage.push(items);
 			} else if (items.type === "2") {
@@ -76,7 +94,12 @@ export default class Detail_Incident extends Component {
 		if (error) {
 			return <div>Error: {error.message}</div>;
 		} else if (!isLoaded) {
-			return <div>Loading...</div>;
+			return <div className="container-fluid" style={{backgroundColor: '#090920',
+				width: '100vw',
+				height: '100vh'}}>
+				<Tab/>
+				<ThreeHorseLoading/>
+			</div>;
 		} else {
 			return(
 					<div key={playbook.id} className="container-fluid">
@@ -89,9 +112,12 @@ export default class Detail_Incident extends Component {
 							</div>
 							<div className="mt-3 col-8">
 								<Description
-									engage={engage}
-									detect={detect}
-									respond={respond}
+									checked = {checkValues}
+									total={total}
+									count={counter}
+									engage = {engage}
+									detect = {detect}
+									respond = {respond}
 								/>
 							</div>
 						</div>

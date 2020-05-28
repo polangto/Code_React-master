@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import LoginPage from "./login/loginPage";
 import PrivateRoute from "./login/PrivateRoute";
+import DetailIncident from "./components/List_Incident/Detail_Incident";
+
 export default class App extends Component {
 	constructor(props) {
 		super(props);
@@ -17,24 +19,18 @@ export default class App extends Component {
 			isLoaded: false,
 			items: [],
 			token: "",
-			isAuthentication:false
 		};
 	}
 
-	setAuthen = (value) => {
-		if(value === "true")
-			this.setState({isAuthentication:true})
-	}
 
 	render() {
-		let {isAuthentication} = this.state;
 		// console.log(window.location.pathname);
 		return (
 			<div>
 				<Router>
 					<Switch>
 						<Route exact path="/" render={() => (
-							isAuthentication ? (
+							typeof(sessionStorage.getItem("isAuthenticated")) !== "undefined" ? (
 								<Redirect to="/dashboards"/>
 							) : (
 								<Redirect to="/login"/>
@@ -44,7 +40,14 @@ export default class App extends Component {
 							<LoginPage/>
 						</Route>
 						<PrivateRoute path='/dashboards' component={Dashboards}/>
-						<PrivateRoute exact path='/list-incident' component={Incident}/>
+						<PrivateRoute path='/detail' component={Incident}/>
+						<PrivateRoute path='/list-incident' component={Incident}/>
+						{/*<Route exact path='/dashboards'>*/}
+						{/*	<Dashboards/>*/}
+						{/*</Route>*/}
+						{/*<Route exact path='/list-incident'>*/}
+						{/*	<Incident/>*/}
+						{/*</Route>*/}
 						<Route path="*" component={()=>"404 NOT FOUND"}/>
 					</Switch>
 				</Router>

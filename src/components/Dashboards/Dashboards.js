@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 import Timeline from "./Timeline";
 import Tab from "../Tabs";
-
+import { Redirect } from "react-router-dom";
 class Dashboards extends Component {
   render() {
     return (

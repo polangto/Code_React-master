@@ -10,6 +10,7 @@ import {
 	useLocation,
 } from "react-router-dom";
 import Tab from "../Tabs";
+import { ThreeHorseLoading } from 'react-loadingg';
 
 export default class Incident extends Component {
 	constructor(props) {
@@ -42,12 +43,13 @@ export default class Incident extends Component {
 			.then((res) => res.json())
 			.then(
 				(result) => {
-					// console.log(result);
-					let list = JSON.parse(result);
-					this.setState({
-						isLoaded: true,
-						items: list,
-					});
+					if(typeof result.status === "undefined"){
+						let list = JSON.parse(result);
+						this.setState({
+							isLoaded: true,
+							items: list,
+						});
+					}
 				},
 				// Note: it's important to handle errors here
 				// instead of a catch() block so that we don't swallow
@@ -64,19 +66,22 @@ export default class Incident extends Component {
 
 	render() {
 		const { error, isLoaded, items } = this.state;
-		// console.log(items);
-		// let data = JSON.parse(items);
 		if (error) {
 			return <div>Error: {error.message}</div>;
 		} else if (!isLoaded) {
-			return <div>Loading...</div>;
+			return <div className="container-fluid" style={{backgroundColor: '#090920',
+				width: '100vw',
+				height: '100vh'}}>
+					<Tab/>
+					<ThreeHorseLoading/>
+			</div>;
 		} else {
 			return (
 				<div>
-					<Tab />
+					<Tab/>
 					<Router>
 						<Switch>
-							<Route exact path='/list-incident'>
+							<Route path='/list-incident'>
 								<TableList bodys={items} />
 							</Route>
 							<Route
