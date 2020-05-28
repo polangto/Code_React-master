@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import LoginPage from "./login/loginPage";
 import PrivateRoute from "./login/PrivateRoute";
+import {fakeAuth} from "./login/Authen";
+
 export default class App extends Component {
 	constructor(props) {
 		super(props);
@@ -17,24 +19,18 @@ export default class App extends Component {
 			isLoaded: false,
 			items: [],
 			token: "",
-			isAuthentication:false
 		};
 	}
 
-	setAuthen = (value) => {
-		if(value === "true")
-			this.setState({isAuthentication:true})
-	}
 
 	render() {
-		let {isAuthentication} = this.state;
 		// console.log(window.location.pathname);
 		return (
 			<div>
 				<Router>
 					<Switch>
 						<Route exact path="/" render={() => (
-							isAuthentication ? (
+							fakeAuth.isAuthenticated ? (
 								<Redirect to="/dashboards"/>
 							) : (
 								<Redirect to="/login"/>
@@ -45,6 +41,12 @@ export default class App extends Component {
 						</Route>
 						<PrivateRoute path='/dashboards' component={Dashboards}/>
 						<PrivateRoute exact path='/list-incident' component={Incident}/>
+						{/*<Route exact path='/dashboards'>*/}
+						{/*	<Dashboards/>*/}
+						{/*</Route>*/}
+						{/*<Route exact path='/list-incident'>*/}
+						{/*	<Incident/>*/}
+						{/*</Route>*/}
 						<Route path="*" component={()=>"404 NOT FOUND"}/>
 					</Switch>
 				</Router>

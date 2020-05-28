@@ -59,7 +59,7 @@ export default class Detail_Incident extends Component {
 
 	render() {
 		let { id, playbook } = this.state;
-		console.log(playbook[0]);
+		console.log(playbook);
 		let engage = [];
 		let detect = [];
 		let respond = [];

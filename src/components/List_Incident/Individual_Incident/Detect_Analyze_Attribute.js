@@ -9,9 +9,9 @@ function Detect_Analyze(props) {
 	if (typeof info !== 'undefined'){
 		checkNull = false;
 		list = info.map((item) =>   <tr>
-			<td><input type="checkbox" class="checkthis" /></td>
+			<td key={item.id}><input type="checkbox" class="checkthis" /></td>
 			<td>{item.name}</td>
-			<td><p>{item.detail}</p></td>
+			<td><p style={{whiteSpace: 'pre-line'}}>{item.detail}</p></td>
 		</tr>);
 	}
 	return (

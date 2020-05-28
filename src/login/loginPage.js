@@ -67,12 +67,6 @@ export default class loginPage extends Component {
 
 	};
 
-	componentDidMount() {
-		let {isAuthenticated} = this.state;
-		if(isAuthenticated) {
-
-		}
-	}
 
 	render() {
 		var background = {

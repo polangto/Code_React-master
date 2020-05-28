@@ -5,6 +5,6 @@ export const fakeAuth = {
     },
     signout() {
         fakeAuth.isAuthenticated = false;
-        console.log("sas");
+        console.log("Sign Out");
     }
 };

@@ -73,7 +73,7 @@ export default class Incident extends Component {
 		} else {
 			return (
 				<div>
-					<Tab />
+					<Tab  islogin = {this.props.islogin}/>
 					<Router>
 						<Switch>
 							<Route exact path='/list-incident'>
