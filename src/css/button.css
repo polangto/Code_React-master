@@ -1,0 +1,19 @@
+
+.btn {
+    /*width: 100%;*/
+    /*text-align: left;*/
+    /*border: none;*/
+    /*background-color: inherit;*/
+    /*padding: 0px;*/
+    /*font-size: 18px;*/
+    cursor: pointer;
+    /*display: inline-block;*/
+}
+
+/*.btn:hover {background: #eee;}*/
+
+.success {color: green;}
+.info {color: dodgerblue;}
+.warning {color: orange;}
+.danger {color: red;}
+.default {color: black;}

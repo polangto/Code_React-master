@@ -10,6 +10,7 @@ import {
 import LoginPage from "./login/loginPage";
 import PrivateRoute from "./login/PrivateRoute";
 import DetailIncident from "./components/List_Incident/Detail_Incident";
+import {Assets} from "./components/Assets/Assets";
 
 export default class App extends Component {
 	constructor(props) {
@@ -42,6 +43,8 @@ export default class App extends Component {
 						<PrivateRoute path='/dashboards' component={Dashboards}/>
 						<PrivateRoute path='/detail' component={Incident}/>
 						<PrivateRoute path='/list-incident' component={Incident}/>
+						<PrivateRoute path='/assets' component={Assets}/>
+
 						{/*<Route exact path='/dashboards'>*/}
 						{/*	<Dashboards/>*/}
 						{/*</Route>*/}

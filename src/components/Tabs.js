@@ -57,6 +57,7 @@ class Tabs extends Component {
 						<Nav className='mr-auto'>
 							<a className="nav-link" href="/dashboards">Dashboards</a>
 							<a className="nav-link" href="/list-incident">List Incident</a>
+							<a className="nav-link" href="/assets">Assets</a>
 							{/*<Link to='/dashboards' className="nav-link">Dashboards</Link>*/}
 							{/*<Link to='/list-incident' className="nav-link">List Incident</Link>*/}
 							{/*<Link to='/new-incident' className="nav-link">New Incident</Link>*/}
