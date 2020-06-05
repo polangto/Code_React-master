@@ -3,15 +3,19 @@ import '../../../style.css';
 export const Detect_Analyze = (props) => {
 	// Khai báo 1 biến số đếm, gọi là "count"
 	const [colapse, setColapse] = useState(false);
-	const [valueUpdate, setValueUpdate] = useState();
-	let { info } = props;
+	let [valueUpdate, setValueUpdate] = useState();
+	let [counter, setCouter] = useState();
+	let { info,count } = props;
 	let checkNull = true;
 	let list = "";
 	if (typeof info !== 'undefined'){
 		checkNull = false;
 		list = info.map((item) =>   <tr>
-			<td key={item.id}><input type="checkbox" class="checkthis" onClick={()=>{
-				changeProgres(item)
+			<td key={item.id}><input type="checkbox" class="checkthis" onClick={(event)=>{
+				if(event.target.checked)
+					props.setCount(++count);
+				else
+					props.setCount(--count);
 			}}/></td>
 			<td>{item.name}</td>
 			<td><p style={{whiteSpace: 'pre-line'}}>{item.detail}</p></td>

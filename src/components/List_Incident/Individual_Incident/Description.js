@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ProgressBar } from "react-bootstrap";
-import Engage from "./Engage_Attribute";
+import {Engage} from "./Engage_Attribute";
 import Respond from "./Respond_Attribute";
 import {Detect_Analyze} from "./Detect_Analyze_Attribute";
 
@@ -8,15 +8,16 @@ export class Description extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			progress_value: 0,
+			progress_value: (props.count*100-((props.count*100)%props.total))/props.total,
 			total:props.total,
+			count:props.count,
 		};
 	}
 
-	static getDerivedStateFromProps(props, state) {
-		let progress = props.count/props.total;
-		return {progress_value: progress };
-	}
+	// static getDerivedStateFromProps(props, state) {
+	// 	let progress = (props.count*100-((props.count*100)%props.total))/props.total;
+	// 	return {progress_value: progress };
+	// }
 
 	colapseButton = () => {
 		this.setState((state) => ({
@@ -24,15 +25,18 @@ export class Description extends Component {
 		}));
 	};
 
-	// resetProgressBar = (count) =>{
-	// 	let {total} = this.state;
-	// 	this.setState({
-	// 		progress_value: Math.floor(count/total)
-	// 	});
-	// }
+	resetProgressBar = (count) =>{
+		console.log(count)
+		let {total} = this.state;
+		let progress = (count*100-((count*100)%total))/total;
+		this.setState({
+			progress_value: progress,
+			count:count,
+		});
+	}
 
 	render() {
-		let { progress_value } = this.state;
+		let { progress_value,count } = this.state;
 		let {engage,detect,respond} = this.props;
 
 		return (
@@ -61,8 +65,8 @@ export class Description extends Component {
 						</thead>
 					</table>
 				</div>
-				<Engage info={engage}/>
-				<Detect_Analyze info={detect} />
+				<Engage info={engage} count={count} setCount={this.resetProgressBar}/>
+				<Detect_Analyze info={detect} count={count} setCount={this.resetProgressBar}/>
 				<Respond info={respond}/>
 			</div>
 		);

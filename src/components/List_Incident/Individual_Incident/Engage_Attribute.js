@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../../style.css';
-function Engage(props) {
+export const Engage = (props)=> {
 	const [colapse, setColapse] = useState(false);
 	let { info } = props;
 	let checkNull = true;
