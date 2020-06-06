@@ -11,6 +11,7 @@ export const Assets = (props) => {
     let [show,setShow] = useState(false);
     let [asset,setAsset] = useState("");
     let [ip,setIp] = useState("");
+    let [idQuery,setIDQuery] = useState();
     let [task, setTask] = useState("")
     let [data, setData] = useState([]);
     let getValueSort = (event) => {
@@ -26,6 +27,7 @@ export const Assets = (props) => {
         setTask("edit");
         setAsset(item.asset_name);
         setIp(item.ip);
+        setIDQuery(item.id);
     };
     let addNewAsset = () =>{
         setShow(true);
@@ -46,21 +48,34 @@ export const Assets = (props) => {
         };
 
         fetch(url, requestOptions)
-            .then((res) => res.json())
-            .then(
-                (result) => {
-                    alert("Delete Succcessful!")
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    // this.setState({
-                    // 	isLoaded: true,
-                    // 	error,
-                    // });
+            .then((res) => {
+                if(res.status === 200){
+                    alert("Add Successful!!!!!!!!!!");
                 }
-            );
+            });
+    }
+    let updateAsset = () =>{
+        handleClose();
+        let url = 'http://10.102.10.244:8080/api/assets?id=' + idQuery;
+        // let { token } = this.state;
+        // let cookie = "user_id=" + token;
+
+        let requestOptions = {
+            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+            credentials: 'include', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify({"asset_name":asset,"ip":ip})
+        };
+
+        fetch(url, requestOptions)
+            .then((res) => {
+                if(res.status === 200){
+                    alert("Update Succcessful!")
+                }
+            });
     }
     let submitAsset = () => {
         handleClose();
@@ -162,7 +177,7 @@ export const Assets = (props) => {
                         </div>
                     <div className="d-flex">
                         <div className="ml-auto">
-                            <button type="button" className="btn btn-primary m-2" onClick={submitAsset}>{task === "edit"?"Save":"Add"}</button>
+                            <button type="button" className="btn btn-primary m-2" onClick={task==="edit"?updateAsset:submitAsset}>{task === "edit"?"Save":"Add"}</button>
                             <button type="button" className="btn btn-secondary m-2" onClick={handleClose}>Cancel</button>
                         </div>
                     </div>
