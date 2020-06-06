@@ -13,6 +13,7 @@ export default class Detail_Incident extends Component {
 			isLoaded: false,
 			playbook: [],
 			id: 0,
+			counter:0,
 		};
 	}
 
@@ -60,12 +61,11 @@ export default class Detail_Incident extends Component {
 	}
 
 	render() {
-		let { id, playbook } = this.state;
+		let { id, playbook,counter } = this.state;
 		let engage = [];
 		let detect = [];
 		let respond = [];
 		let checkValues = [];
-		let counter = 0;
 		let total = playbook.length;
 		if(playbook.length === 0){
 			return <div>
@@ -73,7 +73,7 @@ export default class Detail_Incident extends Component {
 			</div>
 		}
 		playbook.map((items) => {
-			if(items.tag_status === 1){
+			if(items.tag_status === "1"){
 				let checkValue = { checked: true, inc_id: items.id, task_id:items.task_id};
 				checkValues.push(checkValue);
 				counter++;

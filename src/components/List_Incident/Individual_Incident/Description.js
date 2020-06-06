@@ -67,7 +67,7 @@ export class Description extends Component {
 				</div>
 				<Engage info={engage} count={count} setCount={this.resetProgressBar}/>
 				<Detect_Analyze info={detect} count={count} setCount={this.resetProgressBar}/>
-				<Respond info={respond}/>
+				<Respond info={respond} count={count} setCount={this.resetProgressBar}/>
 			</div>
 		);
 	}

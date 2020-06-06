@@ -3,46 +3,79 @@ import '../../../style.css';
 export const Detect_Analyze = (props) => {
 	// Khai báo 1 biến số đếm, gọi là "count"
 	const [colapse, setColapse] = useState(false);
-	let [valueUpdate, setValueUpdate] = useState();
-	let [counter, setCouter] = useState();
+	let [status, setStatus] = useState(true);
+	let [data, setData] = useState();
 	let { info,count } = props;
+	let [counter, setCouter] = useState(count);
 	let checkNull = true;
 	let list = "";
 	if (typeof info !== 'undefined'){
 		checkNull = false;
 		list = info.map((item) =>   <tr>
-			<td key={item.id}><input type="checkbox" class="checkthis" onClick={(event)=>{
-				if(event.target.checked)
-					props.setCount(++count);
-				else
-					props.setCount(--count);
-			}}/></td>
-			<td>{item.name}</td>
+			{item.tag_status === "1" && status
+				?
+				<td key={item.id}><input type="checkbox" className="checkthis" checked onClick={(event) => changeProgress(event,item)}/></td>
+				:
+				<td key={item.id}><input type="checkbox" className="checkthis" onClick={(event) => changeProgress(event, item)}/></td>
+			}
+			<td>{item.description}</td>
 			<td><p style={{whiteSpace: 'pre-line'}}>{item.detail}</p></td>
 		</tr>);
 	}
-	const changeProgres = (item) => {
-		// Default options are marked with *
-		console.log(item)
-		// const response = await fetch("http://10.102.10.244:8080/api/playbook/", {
-		// 	method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-		// 	mode: 'cors', // no-cors, *cors, same-origin
-		// 	cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-		// 	credentials: 'same-origin', // include, *same-origin, omit
-		// 	headers: {
-		// 		'Content-Type': 'application/json'
-		// 		// 'Content-Type': 'application/x-www-form-urlencoded',
-		// 	},
-		// 	redirect: 'follow', // manual, *follow, error
-		// 	referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-		// 	body: JSON.stringify(data) // body data type must match "Content-Type" header
-		// });
-		// return response.json(); // parses JSON response into native JavaScript objects
-	}
 
+	let changeProgress=(event,item)=>{
+		let data = {
+			inc_id : item.inc_id,
+			task_id: item.task_id,
+			tag_status: "0"
+		}
+		setData(data);
+		if(event.target.checked){
+			data.tag_status = "1";
+			counter = ++count;
+			setCouter(counter)
+			setStatus(true)
+		}
+		else{
+			data.tag_status="0";
+			counter = --count;
+			setCouter(counter)
+			setStatus(false)
+		}
+	}
 	useEffect(() => {
-		console.log("asdsad")
-	},[])
+		props.setCount(counter);
+		let url = 'http://10.102.10.244:8080/api/playbook';
+		// let { token } = this.state;
+		// let cookie = "user_id=" + token;
+
+		let requestOptions = {
+			method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+			credentials: 'include', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json',
+				// 'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body: JSON.stringify(data)
+		};
+
+		fetch(url, requestOptions)
+			.then((res) => res.json())
+			.then(
+				(result) => {
+					console.log(result)
+				},
+				// Note: it's important to handle errors here
+				// instead of a catch() block so that we don't swallow
+				// exceptions from actual bugs in components.
+				(error) => {
+					// this.setState({
+					// 	isLoaded: true,
+					// 	error,
+					// });
+				}
+			);
+	},[counter])
 
 	return (
 		<div className="row">
