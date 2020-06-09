@@ -26,7 +26,7 @@ export class Description extends Component {
 	};
 
 	resetProgressBar = (count) =>{
-		console.log(count)
+
 		let {total} = this.state;
 		let progress = (count*100-((count*100)%total))/total;
 		this.setState({

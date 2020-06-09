@@ -62,7 +62,7 @@ function Respond(props) {
 			.then((res) => res.json())
 			.then(
 				(result) => {
-					console.log(result)
+					console.log("Success")
 				},
 				// Note: it's important to handle errors here
 				// instead of a catch() block so that we don't swallow

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Summary from './Individual_Incident/Summary';
+import {Summary} from './Individual_Incident/Summary';
 import {Description} from './Individual_Incident/Description';
 import { useParams } from 'react-router-dom';
 import {ThreeHorseLoading,BatteryLoading } from "react-loadingg";
@@ -106,9 +106,7 @@ export default class Detail_Incident extends Component {
 						<h2>{playbook.name}</h2>
 						<div className="row">
 							<div className="mt-3 col-4">
-								<Summary
-									info ={playbook[0]}
-								/>
+								<Summary info ={playbook[0]} />
 							</div>
 							<div className="mt-3 col-8">
 								<Description
