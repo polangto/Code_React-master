@@ -99,7 +99,7 @@ function Respond(props) {
 				</button>
 			)}
 			{!colapse && !checkNull ?
-				<table id="mytable" class="table table-bordred table-striped">
+				<table id="mytable" className="table table-bordred table-striped">
 					<tbody>
 					{list}
 					</tbody>

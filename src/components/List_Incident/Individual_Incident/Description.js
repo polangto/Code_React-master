@@ -26,7 +26,6 @@ export class Description extends Component {
 	};
 
 	resetProgressBar = (count) =>{
-
 		let {total} = this.state;
 		let progress = (count*100-((count*100)%total))/total;
 		this.setState({
@@ -59,9 +58,11 @@ export class Description extends Component {
 				<div className="row">
 					<table id="mytable" className="table table-bordred table-striped">
 						<thead>
-						<th key style={{width:"37px"}}></th>
-						<th className="d-flex justify-content-start">Task Name</th>
-						<th>Action</th>
+						<tr>
+							<th key style={{width:"37px"}}></th>
+							<th className="d-flex justify-content-start">Task Name</th>
+							<th>Action</th>
+						</tr>
 						</thead>
 					</table>
 				</div>

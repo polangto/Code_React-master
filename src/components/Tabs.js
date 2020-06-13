@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "../css/Tabs.css";
-import { Navbar, Nav, FormControl, Form, Button } from "react-bootstrap";
-import {Link, Redirect, Route} from "react-router-dom";
-import Login from "../login/loginPage"
+import { Navbar, Nav} from "react-bootstrap";
+import {Redirect} from "react-router-dom";
+// import Login from "../login/loginPage"
 
 
 

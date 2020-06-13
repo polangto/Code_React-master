@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import TableList from "./TableList";
-import data from "../../data";
+// import data from "../../data";
 import DetailIncident from "./Detail_Incident";
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
 	// useParams,
-	useLocation,
+	// useLocation,
 } from "react-router-dom";
 import Tab from "../Tabs";
 import { ThreeHorseLoading } from 'react-loadingg';

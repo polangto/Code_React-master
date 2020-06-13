@@ -11,12 +11,12 @@ export const Detect_Analyze = (props) => {
 	let list = "";
 	if (typeof info !== 'undefined'){
 		checkNull = false;
-		list = info.map((item) =>   <tr>
+		list = info.map((item,index) =>   <tr key={index}>
 			{item.tag_status === "1" && status
 				?
-				<td key={item.id}><input type="checkbox" className="checkthis" checked onClick={(event) => changeProgress(event,item)}/></td>
+				<td><input type="checkbox" className="checkthis" checked onClick={(event) => changeProgress(event,item)}/></td>
 				:
-				<td key={item.id}><input type="checkbox" className="checkthis" onClick={(event) => changeProgress(event, item)}/></td>
+				<td><input type="checkbox" className="checkthis" onClick={(event) => changeProgress(event, item)}/></td>
 			}
 			<td>{item.description}</td>
 			<td><p style={{whiteSpace: 'pre-line'}}>{item.detail}</p></td>
@@ -100,7 +100,8 @@ export const Detect_Analyze = (props) => {
 				</button>
 			)}
 			{!colapse && !checkNull ?
-				<table id="mytable" class="table table-bordred table-striped">
+				<table className="table table-bordred table-striped">
+					<thead></thead>
 					<tbody>
 					{list}
 					</tbody>

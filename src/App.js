@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import LoginPage from "./login/loginPage";
 import PrivateRoute from "./login/PrivateRoute";
-import DetailIncident from "./components/List_Incident/Detail_Incident";
+// import DetailIncident from "./components/List_Incident/Detail_Incident";
 import {Assets} from "./components/Assets/Assets";
 
 export default class App extends Component {

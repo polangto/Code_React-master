@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Summary} from './Individual_Incident/Summary';
 import {Description} from './Individual_Incident/Description';
-import { useParams } from 'react-router-dom';
-import {ThreeHorseLoading,BatteryLoading } from "react-loadingg";
+// import { useParams } from 'react-router-dom';
+import {ThreeHorseLoading } from "react-loadingg";
 import Tab from "../Tabs";
 
 export default class Detail_Incident extends Component {

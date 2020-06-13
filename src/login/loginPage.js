@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Background from "../images/background_login.jpg";
 import md5 from "md5";
-import axios from "axios";
+// import axios from "axios";
 import {Redirect} from "react-router-dom";
-import App from "../App";
+// import App from "../App";
 
 
 export default class loginPage extends Component {
@@ -68,11 +68,11 @@ export default class loginPage extends Component {
 
 
 	render() {
-		var background = {
-			width: "100%",
-			heigh: "100%",
-			backgroundImage: `url(${Background})`,
-		};
+		// var background = {
+		// 	width: "100%",
+		// 	heigh: "100%",
+		// 	backgroundImage: `url(${Background})`,
+		// };
 		let {isAuthenticated} = this.state;
 		if (isAuthenticated){
 			return <Redirect

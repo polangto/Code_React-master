@@ -10,7 +10,7 @@ export const Engage = (props)=> {
 	let list = "";
 	if (typeof info !== 'undefined'){
 		checkNull = false;
-		list = info.map((item) =>   <tr>
+		list = info.map((item, index) =>   <tr key={index}>
 			{item.tag_status === "1" && status
 				?
 				<td key={item.id}><input type="checkbox" className="checkthis" checked onClick={(event) => changeProgress(event,item)}/></td>
@@ -102,7 +102,7 @@ export const Engage = (props)=> {
 					</button>
 				)}
 				{!colapse && !checkNull ?
-					<table id="mytable" class="table table-bordred table-striped">
+					<table id="mytable" className="table table-bordred table-striped">
 						<tbody>
 						{list}
 						</tbody>
