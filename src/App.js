@@ -11,6 +11,7 @@ import LoginPage from "./login/loginPage";
 import PrivateRoute from "./login/PrivateRoute";
 // import DetailIncident from "./components/List_Incident/Detail_Incident";
 import {Assets} from "./components/Assets/Assets";
+import {Tasklists} from "./components/Tasklists/Tasklists";
 
 export default class App extends Component {
 	constructor(props) {
@@ -42,8 +43,9 @@ export default class App extends Component {
 						</Route>
 						<PrivateRoute path='/dashboards' component={Dashboards}/>
 						<PrivateRoute path='/detail' component={Incident}/>
-						<PrivateRoute path='/list-incident' component={Incident}/>
+						<PrivateRoute path='/lists-incident' component={Incident}/>
 						<PrivateRoute path='/assets' component={Assets}/>
+						<PrivateRoute path='/task-lists' component={Tasklists}/>
 
 						{/*<Route exact path='/dashboards'>*/}
 						{/*	<Dashboards/>*/}

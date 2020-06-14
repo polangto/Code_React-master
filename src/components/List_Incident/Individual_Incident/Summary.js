@@ -170,7 +170,7 @@ export const Summary = (props) => {
                       <h6 className="ml-auto">URL</h6>
                   </div>
                   <div className="col-8 flex-column">
-                      <h6 style={{maxWidth: '50px'}}>{url}</h6>
+                      <h6 style={{wordWrap: 'break-word'}}>{url}</h6>
                   </div>
               </div>
               :
