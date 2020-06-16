@@ -56,7 +56,7 @@ class Tabs extends Component {
 					<Navbar.Collapse id='basic-navbar-nav'>
 						<Nav className='mr-auto'>
 							<a className="nav-link" href="/dashboards">Dashboards</a>
-							<a className="nav-link" href="/lists-incident">List Incident</a>
+							<a className="nav-link" href="/list-incident">List Incident</a>
 							<a className="nav-link" href="/assets">Assets</a>
 							<a className="nav-link" href="/task-lists">Task lists</a>
 							{/*<Link to='/dashboards' className="nav-link">Dashboards</Link>*/}

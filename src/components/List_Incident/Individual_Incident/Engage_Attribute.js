@@ -8,6 +8,25 @@ export const Engage = (props)=> {
 	let [counter, setCouter] = useState(count);
 	let checkNull = true;
 	let list = "";
+
+	let delPlaybook=(inc_id, task_id) => {
+		let url = 'http://10.102.10.244:8080/api/addplaybook';
+		let requestOptions = {
+			method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+			credentials: 'include', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body:JSON.stringify({inc_id:parseInt(inc_id,10), task_id:parseInt(task_id,10), tag_status:"0"})
+		};
+
+		fetch(url, requestOptions)
+			.then(res => {
+				if(res.status === 200){
+					window.location.reload();
+				}
+			});
+	}
 	if (typeof info !== 'undefined'){
 		checkNull = false;
 		list = info.map((item, index) =>   <tr key={index}>

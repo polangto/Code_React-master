@@ -43,7 +43,7 @@ export default class App extends Component {
 						</Route>
 						<PrivateRoute path='/dashboards' component={Dashboards}/>
 						<PrivateRoute path='/detail' component={Incident}/>
-						<PrivateRoute path='/lists-incident' component={Incident}/>
+						<PrivateRoute path='/list-incident' component={Incident}/>
 						<PrivateRoute path='/assets' component={Assets}/>
 						<PrivateRoute path='/task-lists' component={Tasklists}/>
 
@@ -53,7 +53,7 @@ export default class App extends Component {
 						{/*<Route exact path='/list-incident'>*/}
 						{/*	<Incident/>*/}
 						{/*</Route>*/}
-						<Route path="*" component={()=>"404 NOT FOUND"}/>
+						<Route path="*" component={()=><h1>404 NOT FOUND</h1>}/>
 					</Switch>
 				</Router>
 			</div>

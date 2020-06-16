@@ -116,6 +116,7 @@ export default class Detail_Incident extends Component {
 									engage = {engage}
 									detect = {detect}
 									respond = {respond}
+									inc_id = {id}
 								/>
 							</div>
 						</div>
