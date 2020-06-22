@@ -26,10 +26,11 @@ export const ManageUsers = (props) => {
 	};
 	const handleClose = () => setShow(false);
 	let editUser = (item) => {
+		console.log(item.id);
 		setShow(true);
 		setTask('edit');
-		setUser(item.asset_name);
-		setRole(item.role);
+		setUser(item.name);
+		setRole(() => (item.role ? 'admin' : 'user'));
 		setIDQuery(item.id);
 	};
 	let addNewUser = () => {
@@ -60,10 +61,11 @@ export const ManageUsers = (props) => {
 	};
 	let updateUser = () => {
 		handleClose();
-		let url = 'http://10.102.10.244:8080/api/assets?id=' + idQuery;
+		let url = 'https://5ef05c96ad6d71001617a174.mockapi.io/api/user/' + idQuery;
 		// let { token } = this.state;
 		// let cookie = "user_id=" + token;
-
+		let role_raw = role === 'admin' ? true : false;
+		let data_raw = JSON.stringify({ name: user, role: role_raw });
 		let requestOptions = {
 			method: 'PUT', // *GET, POST, PUT, DELETE, etc.
 			// credentials: 'include', // include, *same-origin, omit
@@ -71,7 +73,7 @@ export const ManageUsers = (props) => {
 				'Content-Type': 'application/json',
 				// 'Content-Type': 'application/x-www-form-urlencoded',
 			},
-			body: JSON.stringify({ asset_name: user, role: role }),
+			body: data_raw,
 		};
 
 		fetch(url, requestOptions).then((res) => {
@@ -118,7 +120,10 @@ export const ManageUsers = (props) => {
 							<th>{item.name}</th>
 							<td>{item.role ? 'admin' : 'user'}</td>
 							<td>
-								<i
+								<button type="button" onClick={() => editUser(item)}>
+									Edit
+								</button>
+								{/* <i
 									type="button"
 									style={{ cursor: 'pointer' }}
 									className="fas fa-edit"
@@ -128,7 +133,7 @@ export const ManageUsers = (props) => {
 									type="button"
 									className="fas fa-trash-alt"
 									onClick={() => delUser(item.id)}
-								/>
+								/> */}
 							</td>
 						</tr>
 					);
@@ -204,10 +209,9 @@ export const ManageUsers = (props) => {
 							<select
 								id="user"
 								onChange={(event) => setRole(event.target.value)}
+								value={role}
 							>
-								<option value="user" selected>
-									User
-								</option>
+								<option value="user">User</option>
 								<option value="admin">Admin</option>
 							</select>
 						) : (
