@@ -86,7 +86,7 @@ export default class Detail_Incident extends Component {
 				engage.push(items);
 			} else if (items.type === "2") {
 				detect.push(items);
-			} else {
+			} else if (items.type === "3"){
 				respond.push(items);
 			}
 		});

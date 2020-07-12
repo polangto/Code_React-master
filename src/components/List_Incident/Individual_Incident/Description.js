@@ -13,7 +13,7 @@ export class Description extends Component {
 			count:props.count,
 			show:false,
 			description:"",
-			task_id:0,
+			task_id:1,
 			phase:"1",
 			name:[],
 			inc_id:props.inc_id,
@@ -33,7 +33,7 @@ export class Description extends Component {
 		console.log(typeof this.state.task_id);
 		let {inc_id, task_id} = this.state;
 
-		let url = 'http://10.102.10.244:8080/api/addplaybook';
+		let url = 'http://10.102.10.244:8080/api/playbook';
 		let requestOptions = {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
 			credentials: 'include', // include, *same-origin, omit

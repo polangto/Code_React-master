@@ -87,7 +87,7 @@ export default class Incident extends Component {
 							<Route
 								path='/detail/:id'
 								render={(props) => (
-									<DetailIncident {...props} />
+									<DetailIncident {...props}/>
 								)}
 							/>
 						</Switch>

@@ -41,7 +41,7 @@ export const Summary = (props) => {
         //     );
     // }
     useEffect(()=>{
-        let url = 'http://10.102.10.244:8080/api/urls?dest_ip=10.10.125.234&timestamp=2020-06-05T08:14:44.941';
+        let url = 'http://10.102.10.244:8080/api/urls?dest_ip=10.10.125.234&timestamp=2020-06-06T14:41:57.794531';
         let requestOptions = {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             headers: {

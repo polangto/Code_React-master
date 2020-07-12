@@ -9,6 +9,26 @@ export const Detect_Analyze = (props) => {
 	let [counter, setCouter] = useState(count);
 	let checkNull = true;
 	let list = "";
+	// let [inc_id, setInc_id] = useState();
+	// let [task_id, setTask_id] = useState();
+	let delPlaybook=(inc_id,task_id) => {
+		let url = 'http://10.102.10.244:8080/api/playbook';
+		let requestOptions = {
+			method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+			credentials: 'include', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body:JSON.stringify({"inc_id":parseInt(inc_id,10), "task_id":parseInt(task_id,10)})
+		};
+
+		fetch(url, requestOptions)
+			.then(res => {
+				if(res.status === 200){
+					window.location.reload();
+				}
+			});
+	}
 	if (typeof info !== 'undefined'){
 		checkNull = false;
 		list = info.map((item,index) =>   <tr key={index}>
@@ -20,6 +40,9 @@ export const Detect_Analyze = (props) => {
 			}
 			<td>{item.description}</td>
 			<td><p style={{whiteSpace: 'pre-line'}}>{item.detail}</p></td>
+			<td>
+				<i type="button" className="fas fa-trash-alt" onClick={() => {delPlaybook(item.inc_id,item.task_id)}}/>
+			</td>
 		</tr>);
 	}
 

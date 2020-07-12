@@ -12,7 +12,7 @@ export default class loginPage extends Component {
 		this.state = {
 			isAuthenticated:false,
 			email: "",
-			password: "",
+			password: ""
 		};
 	}
 
@@ -32,14 +32,14 @@ export default class loginPage extends Component {
 		let { email, password,isAuthenticated } = this.state;
 		let data = {
 			email: email,
-			password: md5(password),
+			password: password,
 		};
 		let datatest = {
 			email: "admin@inseclab.local",
 			password: "admin",
 		};
 		let url = "http://10.102.10.244:8080/api/login";
-		datatest = JSON.stringify(datatest);
+		datatest = JSON.stringify(data);
 		let requestOption = {
 			method: "POST", // *GET, POST, PUT, DELETE, etc.
 			mode: "cors", // no-cors, *cors, same-origin
@@ -57,8 +57,9 @@ export default class loginPage extends Component {
 		fetch(url, requestOption)
 			.then((response) => response.json())
 			.then((result) => {
-				if(result.status === "Login successful"){
-					sessionStorage.setItem('isAuthenticated', true)
+				if(result.status !== "Login fail"){
+					sessionStorage.setItem('isAuthenticated', result.result[0].email);
+					sessionStorage.setItem('role', result.result[0].role)
 					this.setState({isAuthenticated:true});
 				}
 			})

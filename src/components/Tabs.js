@@ -16,7 +16,7 @@ class Tabs extends Component {
 
 	logout = () =>{
 		// if(typeof(sessionStorage.getItem("isAuthenticated")) !== "undefined")
-		sessionStorage.removeItem('isAuthenticated');
+		sessionStorage.clear();
 		console.log("Sign Out");
 		this.setState({redirect:true})
 		document.cookie = "user_id=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
@@ -58,7 +58,13 @@ class Tabs extends Component {
 							<a className="nav-link" href="/dashboards">Dashboards</a>
 							<a className="nav-link" href="/list-incident">List Incident</a>
 							<a className="nav-link" href="/assets">Assets</a>
-							<a className="nav-link" href="/task-lists">Task lists</a>
+							{
+								sessionStorage.getItem("role") === "1"
+								// &&
+								// sessionStorage.getItem("role") === "admin@inseclab.local"
+									? <a className="nav-link" href="/task-lists">Task lists</a>
+									:""
+							}
 							{/*<Link to='/dashboards' className="nav-link">Dashboards</Link>*/}
 							{/*<Link to='/list-incident' className="nav-link">List Incident</Link>*/}
 							{/*<Link to='/new-incident' className="nav-link">New Incident</Link>*/}
