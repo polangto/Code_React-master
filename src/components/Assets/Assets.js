@@ -11,6 +11,8 @@ export const Assets = (props) => {
     let [show,setShow] = useState(false);
     let [asset,setAsset] = useState("");
     let [ip,setIp] = useState("");
+    let [user,setUser] = useState("");
+    let [sdt,setSdt] = useState("");
     let [idQuery,setIDQuery] = useState();
     let [task, setTask] = useState("")
     let [data, setData] = useState([]);
@@ -35,9 +37,15 @@ export const Assets = (props) => {
         setTask("edit");
         setAsset(item.asset_name);
         setIp(item.ip);
+        setUser(item.user);
+        setSdt(item.sdt);
         setIDQuery(item.id);
     };
     let addNewAsset = () =>{
+        setAsset("");
+        setIp("");
+        setUser("");
+        setSdt("");
         setShow(true);
         setTask("add");
     }
@@ -77,7 +85,7 @@ export const Assets = (props) => {
                 'Content-Type': 'application/json',
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({"asset_name":asset,"ip":ip})
+            body: JSON.stringify({"asset_name":asset,"ip":ip,"user":user,"sdt":sdt})
         };
 
         fetch(url, requestOptions)
@@ -102,7 +110,7 @@ export const Assets = (props) => {
                 'Content-Type': 'application/json',
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({"asset_name":asset,"ip":ip})
+            body: JSON.stringify({"asset_name":asset,"ip":ip,"user":user,"sdt":sdt})
         };
 
         fetch(url, requestOptions)
@@ -120,6 +128,8 @@ export const Assets = (props) => {
         return <tr key={item.ip}>
             <th>{item.asset_name}</th>
             <td>{item.ip}</td>
+            <td>{item.user}</td>
+            <td>{item.sdt}</td>
             <td>
                 <i type="button" style={{cursor: "pointer"}} className="fas fa-edit" onClick={() => editAssets(item)}/>
                 <i type="button" className="fas fa-trash-alt" onClick={()=> delAsset(item.id)}/>
@@ -182,7 +192,7 @@ export const Assets = (props) => {
                             <input type="text" className="form-control"
                                    defaultValue={asset} onChange={event => setAsset(event.target.value)}/>:
                             <input type="text" className="form-control"
-                                   placeholder="Ex: user1" onChange={event => setAsset(event.target.value)}/>
+                                   placeholder="Ex: PC-1" onChange={event => setAsset(event.target.value)}/>
                             }
                         </div>
                         <label htmlFor="ip">IP Address</label>
@@ -192,6 +202,24 @@ export const Assets = (props) => {
                                        defaultValue={ip} onChange={event => setIp(event.target.value)}/>:
                                 <input type="text" className="form-control"
                                        placeholder="Ex: 192.168.1.1" onChange={event => setIp(event.target.value)}/>
+                            }
+                        </div>
+                        <label htmlFor="assets-name">Info User</label>
+                        <div className="input-group mb-3">
+                            {task === "edit" ?
+                                <input type="text" className="form-control"
+                                       defaultValue={user} onChange={event => setUser(event.target.value)}/>:
+                                <input type="text" className="form-control"
+                                       placeholder="Ex: Nguyen Van A" onChange={event => setUser(event.target.value)}/>
+                            }
+                        </div>
+                        <label htmlFor="assets-name">Phone</label>
+                        <div className="input-group mb-3">
+                            {task === "edit" ?
+                                <input type="text" className="form-control"
+                                       defaultValue={sdt} onChange={event => setSdt(event.target.value)}/>:
+                                <input type="text" className="form-control"
+                                       placeholder="Ex: 0909090909" onChange={event => setSdt(event.target.value)}/>
                             }
                         </div>
                     <div className="d-flex">
@@ -217,6 +245,12 @@ export const Assets = (props) => {
                         </th>
                         <th scope="col" onClick={getValueSort} style={{cursor: "pointer"}}>
                             IP Address
+                        </th>
+                        <th scope="col" onClick={getValueSort} style={{cursor: "pointer"}}>
+                            Info user
+                        </th>
+                        <th scope="col" onClick={getValueSort} style={{cursor: "pointer"}}>
+                            Phone number
                         </th>
                         <th scope="col">Edit
                         </th>
